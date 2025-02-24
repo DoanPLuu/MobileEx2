@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Ô nhập địa chỉ IP của Server -->
+    <EditText
+        android:id="@+id/editTextServerIP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập IP của Server"
+        android:inputType="text" />
+
+    <!-- Ô nhập tin nhắn -->
+    <EditText
+        android:id="@+id/editTextMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tin nhắn"
+        android:inputType="text" />
+
+    <!-- Nút gửi tin nhắn -->
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gửi" />
+
+    <!-- Hiển thị tin nhắn đã gửi -->
+    <TextView
+        android:id="@+id/textViewMessages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textSize="16sp"
+        android:text="Tin nhắn sẽ hiển thị ở đây..."
+        android:background="@android:color/darker_gray"
+        android:padding="10dp"
+        android:minHeight="100dp" />
+</LinearLayout>
