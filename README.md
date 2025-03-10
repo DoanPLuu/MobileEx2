@@ -1,8 +1,12 @@
 # MobileEx
 Các bài tập giảng viên yêu cầu cho môn LTUDTTBDT nâng cao 
 
-##NetDevAndroid
+NetDevAndroid
 >Gồm các bài tập lập trình mạng
 
-##APIDevAndroid
+APIDevAndroid
 >Gồm các bài tập liên quan tới RESTful API và các phương thức
+
+- ThucHanh.rar
+>Bài thực hành của DBPCod
+-
