@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String currency = params[0];
-            String apiUrl = "https://api.frankfurter.app/latest?from=USD&to=" + currency;
+            String apiKey = "1315b589c70ea7fae87fb6b6";
+            String apiUrl = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/USD";
 
             try {
                 URL url = new URL(apiUrl);
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             if (result != null) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    JSONObject rates = jsonObject.getJSONObject("rates");
+                    JSONObject rates = jsonObject.getJSONObject("conversion_rates");
 
                     String currency = spinnerCurrency.getSelectedItem().toString();
                     if (rates.has(currency)) {
