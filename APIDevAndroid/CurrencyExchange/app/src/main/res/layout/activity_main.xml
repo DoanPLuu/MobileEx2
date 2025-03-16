@@ -5,18 +5,17 @@
     android:gravity="center"
     android:padding="24dp">
 
-    <EditText
-        android:id="@+id/editTextCurrency"
+    <Spinner
+        android:id="@+id/spinnerCurrency"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập mã tiền tệ (VD: EUR, VND)" />
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnConvert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Chuyển đổi"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/textViewResult"
