@@ -3,8 +3,9 @@ package com.example.curexchange;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextCurrency;
+    private Spinner spinnerCurrency;
     private TextView textViewResult;
 
     @Override
@@ -27,17 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextCurrency = findViewById(R.id.editTextCurrency);
+        spinnerCurrency = findViewById(R.id.spinnerCurrency);
         textViewResult = findViewById(R.id.textViewResult);
         Button btnConvert = findViewById(R.id.btnConvert);
 
+        // Thiết lập danh sách tiền tệ cho Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.currency_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCurrency.setAdapter(adapter);
+
         btnConvert.setOnClickListener(v -> {
-            String currency = editTextCurrency.getText().toString().trim().toUpperCase();
-            if (!currency.isEmpty()) {
-                new FetchExchangeRateTask().execute(currency);
-            } else {
-                Toast.makeText(this, "Vui lòng nhập mã tiền tệ", Toast.LENGTH_SHORT).show();
-            }
+            String currency = spinnerCurrency.getSelectedItem().toString();
+            new FetchExchangeRateTask().execute(currency);
         });
     }
 
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(result);
                     JSONObject rates = jsonObject.getJSONObject("rates");
 
-                    String currency = editTextCurrency.getText().toString().toUpperCase();
+                    String currency = spinnerCurrency.getSelectedItem().toString();
                     if (rates.has(currency)) {
                         double exchangeRate = rates.getDouble(currency);
                         textViewResult.setText("1 USD = " + exchangeRate + " " + currency);
