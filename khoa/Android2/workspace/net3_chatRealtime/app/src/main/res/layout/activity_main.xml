@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Chọn vai trò: Server hay Client -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnStartServer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Server" />
+        <Button
+            android:id="@+id/btnConnectClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect as Client" />
+    </LinearLayout>
+
+    <!-- IP và Port cho Client -->
+    <EditText
+        android:id="@+id/etServerIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Server IP (e.g., 192.168.x.x)"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/etPort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Port (e.g., 8080)"
+        android:visibility="gone" />
+
+    <!-- Hiển thị tin nhắn với ScrollView -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/tvMessages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="#E0E0E0"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false" />
+    </ScrollView>
+
+
+    <!-- Nhập và gửi tin nhắn -->
+    <EditText
+        android:id="@+id/etMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your message" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Send" />
+
+</LinearLayout>
