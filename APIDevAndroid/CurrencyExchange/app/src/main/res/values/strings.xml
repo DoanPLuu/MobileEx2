@@ -2,6 +2,7 @@
     <string name="app_name">CurExchange</string>
     <string-array name="currency_list">
         <item>EUR</item>
+        <item>VND</item>
         <item>JPY</item>
         <item>GBP</item>
         <item>AUD</item>
