@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String currency = params[0];
-            String apiKey = "1315b589c70ea7fae87fb6b6";
+            String apiKey = BuildConfig.EXCHANGE_RATE_API_KEY;  // Lấy API key từ BuildConfig
             String apiUrl = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/USD";
 
             try {
