@@ -4,7 +4,11 @@ plugins {
 
 android {
     namespace = "com.example.gmap1"
-    compileSdk = 34
+    compileSdk = 35
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         applicationId = "com.example.gmap1"
@@ -12,7 +16,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        manifestPlaceholders["MAPS_API_KEY"] = project.properties["MAPS_API_KEY"] ?: ""
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
