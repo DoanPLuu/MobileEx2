@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">CurExchange</string>
+    <string-array name="currency_list">
+        <item>EUR</item>
+        <item>VND</item>
+        <item>JPY</item>
+        <item>GBP</item>
+        <item>AUD</item>
+        <item>CAD</item>
+        <item>CHF</item>
+        <item>CNY</item>
+        <item>SGD</item>
+    </string-array>
+</resources>
+
