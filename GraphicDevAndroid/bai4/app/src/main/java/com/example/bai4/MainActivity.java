@@ -82,9 +82,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.cameracapture.fileprovider",
-                        photoFile);
+                Uri photoURI = FileProvider.getUriForFile(this, "com.example.bai4.fileprovider", new File(currentPhotoPath));
+                imageView.setImageURI(photoURI);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(cameraIntent, CAMERA_CAPTURE_CODE);
             }

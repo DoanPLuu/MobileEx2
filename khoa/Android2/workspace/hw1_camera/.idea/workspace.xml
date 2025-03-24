@@ -22,56 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b4b22e2-ec6c-4cf2-8dd1-d1d4dfe43ab5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/androidTest/java/com/example/bai4/ExampleInstrumentedTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/java/com/example/bai4/MainActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/test/java/com/example/bai4/ExampleUnitTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/gradle/libs.versions.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/java/com/example/bai4/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../GraphicDevAndroid/bai4/app/src/main/java/com/example/bai4/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
