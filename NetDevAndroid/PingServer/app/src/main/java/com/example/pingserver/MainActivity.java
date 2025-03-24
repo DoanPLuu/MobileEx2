@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btnPing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new PingTask().execute("google.com");
+                new PingTask().execute("8.8.8.8");
             }
         });
     }
