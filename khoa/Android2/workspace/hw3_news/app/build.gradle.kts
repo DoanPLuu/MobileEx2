@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.news"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.news"
@@ -40,4 +40,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("org.jsoup:jsoup:1.13.1")
 }
