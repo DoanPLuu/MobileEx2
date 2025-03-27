@@ -16,7 +16,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f566f5d7-1b92-4c98-be1c-cd082485a9e8" name="Changes" comment="" />
+    <list default="true" id="f566f5d7-1b92-4c98-be1c-cd082485a9e8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../luu/HardwareDevAndroid/bai3/app/src/main/java/com/example/bai3/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../luu/HardwareDevAndroid/bai3/app/src/main/java/com/example/bai3/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../luu/HardwareDevAndroid/bai3/app/src/main/java/com/example/bai3/NewsItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../luu/HardwareDevAndroid/bai3/app/src/main/java/com/example/bai3/NewsItem.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +37,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
