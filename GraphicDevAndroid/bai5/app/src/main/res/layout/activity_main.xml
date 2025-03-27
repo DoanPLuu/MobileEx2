@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Nút Bắt đầu ghi âm ở giữa -->
+    <Button
+        android:id="@+id/btnStartRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bắt đầu ghi âm"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:layout_centerInParent="true"/>
+
+    <!-- Nút Dừng ghi âm ở dưới cùng bên trái -->
+    <Button
+        android:id="@+id/btnStopRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dừng ghi âm"
+        android:enabled="false"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Nút Phát lại ở dưới cùng bên phải -->
+    <Button
+        android:id="@+id/btnPlayAudio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phát lại"
+        android:enabled="false"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>
