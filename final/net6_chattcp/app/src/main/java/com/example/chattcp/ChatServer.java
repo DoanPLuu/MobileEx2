@@ -24,6 +24,8 @@ public class ChatServer {
         this.messageCallback = callback;
     }
 
+
+
     public void start() {
         new Thread(() -> {
             try {

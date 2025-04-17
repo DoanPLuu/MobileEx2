@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<NewsItem> newsItems) {
+            Log.d("RSS_DEBUG", "Số bài viết lấy được: " + newsItems.size());
+            for (NewsItem item : newsItems) {
+                Log.d("RSS_ITEM", item.getTitle() + " - " + item.getLink());
+            }
+
             adapter = new NewsAdapter(MainActivity.this, newsItems);
             recyclerView.setAdapter(adapter);
         }
