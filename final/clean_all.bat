@@ -1,20 +1,15 @@
-@echo off
-setlocal enabledelayedexpansion
+from accounts.models import User
+from music.models import Playlist, Song
 
-cd /d D:\Code\MobileEx\final
+# Thay 'admin' bằng username có thật
+user = User.objects.get(username='testuser')
 
-for /d %%i in (*) do (
-    if exist "%%i\gradlew.bat" (
-        echo.
-        echo Cleaning project: %%i
-        cd "%%i"
-        call gradlew.bat clean
-        cd ..
-    ) else (
-        echo Skipping %%i (no gradlew.bat found)
-    )
+playlist = Playlists.objects.create(
+    name="My Favorite Songs",
+    user=user,
+    cover_image="https://via.placeholder.com/150",
+    is_public=False
 )
 
-echo.
-echo ✅ Done cleaning all projects!
-pause
+song = Song.objects.get(id=1)  # Đảm bảo bài hát này tồn tại
+playlist.songs.add(song)

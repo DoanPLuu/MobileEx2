@@ -1,0 +1,54 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Nhập IP -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ipInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập địa chỉ IP" />
+
+            <!-- Nút kết nối -->
+            <Button
+                android:id="@+id/connectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kết nối"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp" />
+
+            <!-- Nhập tin nhắn -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập tin nhắn"
+                android:layout_marginTop="16dp" />
+
+            <!-- Gửi tin nhắn -->
+            <Button
+                android:id="@+id/sendMess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gửi tin nhắn"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
