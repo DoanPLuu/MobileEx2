@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/lightControlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bật/Tắt Đèn Thông Minh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/volumeControlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điều Chỉnh Âm Lượng"
+        app:layout_constraintBottom_toTopOf="@id/lightControlButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/songControlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chuyển Bài Hát/Video"
+        app:layout_constraintBottom_toTopOf="@id/volumeControlButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/iotControlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điều Khiển Thiết Bị IoT"
+        app:layout_constraintBottom_toTopOf="@id/songControlButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
