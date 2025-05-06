@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button volumeControlButton;
     private Button songControlButton;
     private Button iotControlButton;
+    private Button flashBeatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         volumeControlButton = findViewById(R.id.volumeControlButton);
         songControlButton = findViewById(R.id.songControlButton);
         iotControlButton = findViewById(R.id.iotControlButton);
+        flashBeatButton = findViewById(R.id.flashBeatButton);
 
         // Thêm sự kiện cho các nút
         lightControlButton.setOnClickListener(v -> {
@@ -42,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         iotControlButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, BluetoothControlActivity.class);
+            startActivity(intent);
+        });
+        
+        flashBeatButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FlashBeatActivity.class);
             startActivity(intent);
         });
     }

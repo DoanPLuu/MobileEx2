@@ -5,9 +5,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.MediaPlayer;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,20 +18,24 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
 
     private SensorManager sensorManager;
     private Sensor accelerometer;
-    private MediaPlayer mediaPlayer;
-    private static final float TILT_THRESHOLD = 3.0f; // Giảm ngưỡng để nhạy hơn
+    private AudioManager audioManager;
+    private TextView statusTextView;
+    
+    private static final float TILT_THRESHOLD = 3.0f; // Ngưỡng nghiêng để kích hoạt
     private long lastActionTime = 0;
     private static final long ACTION_DELAY = 1000; // 1 giây chờ
-
-    // Danh sách bài hát (ID tài nguyên trong res/raw)
-    private int[] songs = {R.raw.aloalo, R.raw.diquadeo, R.raw.trinh}; // Thay song2, song3 bằng tên file thực
-    private int currentSongIndex = 0; // Chỉ số bài hát hiện tại
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_song_control);
 
+        statusTextView = findViewById(R.id.statusTextView);
+        
+        // Khởi tạo AudioManager để điều khiển media
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        
+        // Khởi tạo cảm biến
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -37,23 +43,10 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
 
         if (accelerometer == null) {
             Toast.makeText(this, "Cảm biến gia tốc không có sẵn!", Toast.LENGTH_SHORT).show();
+            statusTextView.setText("Không có cảm biến gia tốc");
             finish();
-        }
-
-        // Khởi tạo MediaPlayer với bài hát đầu tiên
-        playSong(currentSongIndex);
-    }
-
-    private void playSong(int songIndex) {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
-        mediaPlayer = MediaPlayer.create(this, songs[songIndex]);
-        if (mediaPlayer != null) {
-            mediaPlayer.start();
-            Toast.makeText(this, "Đang phát bài " + (songIndex + 1), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Không thể phát bài hát!", Toast.LENGTH_SHORT).show();
+            statusTextView.setText("Nghiêng thiết bị sang trái/phải để điều khiển nhạc");
         }
     }
 
@@ -69,17 +62,6 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
     }
 
     @Override
@@ -96,12 +78,14 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
             // Xoay trái (X dương) để chuyển bài tiếp theo
             if (x > TILT_THRESHOLD) {
                 lastActionTime = currentTime;
-                skipToNext();
+                sendMediaButtonClick(KeyEvent.KEYCODE_MEDIA_NEXT);
+                statusTextView.setText("Đã chuyển bài tiếp theo");
             }
             // Xoay phải (X âm) để quay lại bài trước
             else if (x < -TILT_THRESHOLD) {
                 lastActionTime = currentTime;
-                skipToPrevious();
+                sendMediaButtonClick(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                statusTextView.setText("Đã quay lại bài trước");
             }
         }
     }
@@ -109,21 +93,24 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-    private void skipToNext() {
-        if (currentSongIndex < songs.length - 1) {
-            currentSongIndex++;
-            playSong(currentSongIndex);
-        } else {
-            Toast.makeText(this, "Đã ở bài cuối cùng!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void skipToPrevious() {
-        if (currentSongIndex > 0) {
-            currentSongIndex--;
-            playSong(currentSongIndex);
-        } else {
-            Toast.makeText(this, "Đã ở bài đầu tiên!", Toast.LENGTH_SHORT).show();
+    private void sendMediaButtonClick(int keyCode) {
+        // Gửi lệnh điều khiển media thông qua AudioManager
+        try {
+            // Gửi sự kiện nhấn nút
+            KeyEvent keyDown = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
+            audioManager.dispatchMediaKeyEvent(keyDown);
+            
+            // Gửi sự kiện thả nút
+            KeyEvent keyUp = new KeyEvent(KeyEvent.ACTION_UP, keyCode);
+            audioManager.dispatchMediaKeyEvent(keyUp);
+            
+            Toast.makeText(this, "Đã gửi lệnh: " + 
+                    (keyCode == KeyEvent.KEYCODE_MEDIA_NEXT ? "Bài tiếp theo" : 
+                     keyCode == KeyEvent.KEYCODE_MEDIA_PREVIOUS ? "Bài trước" : 
+                     "Khác"), 
+                    Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "Lỗi gửi lệnh: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }
