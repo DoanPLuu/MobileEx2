@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +17,21 @@ public class VolumeControlActivity extends AppCompatActivity implements SensorEv
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private AudioManager audioManager;
+    private TextView statusTextView;
+    private TextView currentVolumeTextView;
 
     private static final float INCREASE_TILT_THRESHOLD = 5.0f; // Ngưỡng nghiêng trái để tăng âm lượng
-    private static final float DECREASE_TILT_THRESHOLD = 10.0f; // Ngưỡng nghiêng phải sâu hơn để giảm âm lượng
+    private static final float DECREASE_TILT_THRESHOLD = -10.0f; // Ngưỡng nghiêng phải sâu hơn để giảm âm lượng
+    private long lastActionTime = 0;
+    private static final long ACTION_DELAY = 500; // 0.5 giây chờ giữa các hành động
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_volume_control);
+
+        statusTextView = findViewById(R.id.statusTextView);
+        currentVolumeTextView = findViewById(R.id.currentVolumeTextView);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -34,7 +42,11 @@ public class VolumeControlActivity extends AppCompatActivity implements SensorEv
 
         if (accelerometer == null) {
             Toast.makeText(this, "Cảm biến gia tốc không có sẵn trên thiết bị này!", Toast.LENGTH_SHORT).show();
+            statusTextView.setText("Không có cảm biến gia tốc");
             finish();
+        } else {
+            statusTextView.setText("Sẵn sàng điều chỉnh âm lượng");
+            updateVolumeDisplay();
         }
     }
 
@@ -57,13 +69,22 @@ public class VolumeControlActivity extends AppCompatActivity implements SensorEv
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float x = event.values[0]; // Gia tốc trục X (nghiêng trái/phải)
 
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastActionTime < ACTION_DELAY) {
+                return; // Tránh điều chỉnh quá nhanh
+            }
+
             // Nghiêng trái (x dương) để tăng âm lượng
             if (x > INCREASE_TILT_THRESHOLD) {
+                lastActionTime = currentTime;
                 adjustVolume(true);
+                statusTextView.setText("Đã tăng âm lượng");
             }
-            // Nghiêng phải sâu hơn (x âm, ngưỡng lớn hơn) để giảm âm lượng
-            else if (x < -DECREASE_TILT_THRESHOLD) {
+            // Nghiêng phải (x âm) để giảm âm lượng
+            else if (x < DECREASE_TILT_THRESHOLD) {
+                lastActionTime = currentTime;
                 adjustVolume(false);
+                statusTextView.setText("Đã giảm âm lượng");
             }
         }
     }
@@ -85,5 +106,14 @@ public class VolumeControlActivity extends AppCompatActivity implements SensorEv
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume - 1, AudioManager.FLAG_SHOW_UI);
             }
         }
+        
+        // Cập nhật hiển thị âm lượng
+        updateVolumeDisplay();
+    }
+    
+    private void updateVolumeDisplay() {
+        int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        currentVolumeTextView.setText("Âm lượng hiện tại: " + currentVolume + "/" + maxVolume);
     }
 }
