@@ -123,7 +123,9 @@ public class   LightControlActivity extends AppCompatActivity implements SensorE
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             float distance = event.values[0];
             float maxRange = proximitySensor.getMaximumRange();
-            Toast.makeText(this, "Khoảng cách: " + distance + ", Ngưỡng: " + maxRange, Toast.LENGTH_SHORT).show();
+            
+            // Xóa Toast debug này để tránh hiển thị liên tục
+            // Toast.makeText(this, "Khoảng cách: " + distance + ", Ngưỡng: " + maxRange, Toast.LENGTH_SHORT).show();
             
             if (distance < maxRange) {
                 toggleLight();
@@ -152,7 +154,9 @@ public class   LightControlActivity extends AppCompatActivity implements SensorE
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     cameraManager.setTorchMode(cameraId, status);
-                    Toast.makeText(this, "Đèn flash: " + (status ? "BẬT" : "TẮT"), Toast.LENGTH_SHORT).show();
+                    
+                    // Xóa Toast debug này
+                    // Toast.makeText(this, "Đèn flash: " + (status ? "BẬT" : "TẮT"), Toast.LENGTH_SHORT).show();
                 }
             } catch (CameraAccessException e) {
                 Toast.makeText(this, "Lỗi truy cập đèn flash: " + e.getMessage(), Toast.LENGTH_SHORT).show();
