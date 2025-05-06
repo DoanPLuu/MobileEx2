@@ -13,6 +13,7 @@ import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -66,6 +67,9 @@ public class   LightControlActivity extends AppCompatActivity implements SensorE
 
         // Kiểm tra và yêu cầu quyền camera
         checkAndRequestCameraPermission();
+
+        TextView instructionTextView = findViewById(R.id.instructionTextView);
+        instructionTextView.setText("Đưa tay gần cảm biến để bật/tắt đèn");
     }
 
     private void checkAndRequestCameraPermission() {

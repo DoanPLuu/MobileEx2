@@ -30,7 +30,7 @@ public class BluetoothControlActivity extends AppCompatActivity implements Senso
     private TextView statusTextView;
 
     private static final float ROTATION_THRESHOLD = 1.5f; // Ngưỡng xoay để kích hoạt
-    private static final float SHAKE_THRESHOLD = 15.0f; // Ngưỡng lắc để kích hoạt phát/tạm dừng
+    private static final float SHAKE_THRESHOLD = 10.0f; // Giảm từ 15.0f xuống 10.0f
     private static final int BLUETOOTH_PERMISSION_REQUEST = 200;
     private long lastActionTime = 0;
     private static final long ACTION_DELAY = 1000; // 1 giây chờ giữa các hành động
@@ -179,13 +179,19 @@ public class BluetoothControlActivity extends AppCompatActivity implements Senso
         float delta = currentAcceleration - lastAcceleration;
         acceleration = acceleration * 0.9f + delta;
         
+        // Thêm log để debug
+        if (Math.abs(acceleration) > 5.0f) {
+            // Log giá trị gia tốc để kiểm tra
+            System.out.println("Acceleration: " + acceleration);
+        }
+        
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastActionTime < ACTION_DELAY) {
             return; // Tránh kích hoạt liên tục
         }
         
         // Nếu lắc đủ mạnh, phát/tạm dừng
-        if (acceleration > SHAKE_THRESHOLD) {
+        if (Math.abs(acceleration) > SHAKE_THRESHOLD) {
             lastActionTime = currentTime;
             sendMediaButtonClick(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
             statusTextView.setText("Đã phát/tạm dừng");
