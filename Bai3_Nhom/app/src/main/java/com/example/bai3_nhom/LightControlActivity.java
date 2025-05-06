@@ -22,7 +22,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
-public class LightControlActivity extends AppCompatActivity implements SensorEventListener {
+public class   LightControlActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor proximitySensor;
@@ -64,12 +64,39 @@ public class LightControlActivity extends AppCompatActivity implements SensorEve
             e.printStackTrace();
         }
 
-        // Yêu cầu quyền nếu chưa được cấp
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+        // Kiểm tra và yêu cầu quyền camera
+        checkAndRequestCameraPermission();
+    }
+
+    private void checkAndRequestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) 
                 != PackageManager.PERMISSION_GRANTED) {
+            
+            // Kiểm tra xem có nên hiển thị giải thích tại sao cần quyền không
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                // Hiển thị lý do tại sao ứng dụng cần quyền này
+                Toast.makeText(this, 
+                    "Ứng dụng cần quyền camera để điều khiển đèn flash. Vui lòng cấp quyền.", 
+                    Toast.LENGTH_LONG).show();
+            }
+            
+            // Yêu cầu quyền
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
                     CAMERA_REQUEST_CODE);
+        } else {
+            // Đã có quyền, tiếp tục
+            Toast.makeText(this, "Đã có quyền camera", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void checkFlashAvailability() {
+        boolean hasFlash = getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        if (!hasFlash) {
+            Toast.makeText(this, "Thiết bị không hỗ trợ đèn flash", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Đèn flash sẵn sàng sử dụng", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -90,7 +117,11 @@ public class LightControlActivity extends AppCompatActivity implements SensorEve
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            if (event.values[0] < proximitySensor.getMaximumRange()) {
+            float distance = event.values[0];
+            float maxRange = proximitySensor.getMaximumRange();
+            Toast.makeText(this, "Khoảng cách: " + distance + ", Ngưỡng: " + maxRange, Toast.LENGTH_SHORT).show();
+            
+            if (distance < maxRange) {
                 toggleLight();
             }
         }
@@ -117,21 +148,34 @@ public class LightControlActivity extends AppCompatActivity implements SensorEve
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     cameraManager.setTorchMode(cameraId, status);
+                    Toast.makeText(this, "Đèn flash: " + (status ? "BẬT" : "TẮT"), Toast.LENGTH_SHORT).show();
                 }
             } catch (CameraAccessException e) {
+                Toast.makeText(this, "Lỗi truy cập đèn flash: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+        } else {
+            Toast.makeText(this, "Không thể truy cập camera", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // Xử lý kết quả yêu cầu quyền
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_REQUEST_CODE) {
-            if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-//                Toast.makeText(this, "Không có quyền CAMERA, không thể bật flash!", Toast.LENGTH_SHORT).show();
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Đã được cấp quyền camera", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Không có quyền CAMERA, không thể bật flash!", 
+                        Toast.LENGTH_SHORT).show();
+                
+                // Nếu người dùng từ chối và chọn "Không hỏi lại", hướng dẫn họ vào cài đặt
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                    Toast.makeText(this, 
+                        "Vui lòng cấp quyền camera trong Cài đặt > Ứng dụng > Quyền", 
+                        Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

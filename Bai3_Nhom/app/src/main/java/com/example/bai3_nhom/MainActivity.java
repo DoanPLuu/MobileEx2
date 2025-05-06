@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         lightControlButton = findViewById(R.id.lightControlButton);
         volumeControlButton = findViewById(R.id.volumeControlButton);
         songControlButton = findViewById(R.id.songControlButton);
-//        iotControlButton = findViewById(R.id.iotControlButton);
+        iotControlButton = findViewById(R.id.iotControlButton);
 
         // Thêm sự kiện cho các nút
         lightControlButton.setOnClickListener(v -> {
@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, SongControlActivity.class);
             startActivity(intent);
         });
-//
-//        iotControlButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(MainActivity.this, IoTControlActivity.class);
-//            startActivity(intent);
-//        });
+
+        iotControlButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, BluetoothControlActivity.class);
+            startActivity(intent);
+        });
     }
 }
