@@ -16,14 +16,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SongControlActivity extends AppCompatActivity implements SensorEventListener {
 
+    // Quản lý cảm biến thiết bị
     private SensorManager sensorManager;
+    // Cảm biến gia tốc để phát hiện chuyển động nghiêng
     private Sensor accelerometer;
+    // Quản lý âm thanh của thiết bị
     private AudioManager audioManager;
+    // Hiển thị trạng thái hiện tại
     private TextView statusTextView;
     
-    private static final float TILT_THRESHOLD = 3.0f; // Ngưỡng nghiêng để kích hoạt
+    // Ngưỡng nghiêng để kích hoạt chuyển bài
+    private static final float TILT_THRESHOLD = 3.0f;
+    // Thời gian của hành động cuối cùng để tránh kích hoạt liên tục
     private long lastActionTime = 0;
-    private static final long ACTION_DELAY = 1000; // 1 giây chờ
+    // Độ trễ giữa các hành động (1 giây)
+    private static final long ACTION_DELAY = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,10 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
         sensorManager.unregisterListener(this);
     }
 
+    /**
+     * Xử lý khi có thay đổi từ cảm biến
+     * Phát hiện khi thiết bị nghiêng để chuyển bài hát
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
@@ -90,9 +101,16 @@ public class SongControlActivity extends AppCompatActivity implements SensorEven
         }
     }
 
+    /**
+     * Xử lý khi độ chính xác của cảm biến thay đổi (không sử dụng)
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
+    /**
+     * Gửi lệnh điều khiển media thông qua sự kiện phím ảo
+     * @param keyCode Mã phím (next/previous) để điều khiển media
+     */
     private void sendMediaButtonClick(int keyCode) {
         // Gửi lệnh điều khiển media thông qua AudioManager
         try {

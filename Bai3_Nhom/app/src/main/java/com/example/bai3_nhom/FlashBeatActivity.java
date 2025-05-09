@@ -188,20 +188,25 @@ public class FlashBeatActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Phân tích dữ liệu âm thanh để điều khiển đèn flash theo nhịp
+     * @param buffer Bộ đệm chứa dữ liệu âm thanh
+     * @param readSize Kích thước dữ liệu đã đọc
+     */
     private void analyzeAudio(short[] buffer, int readSize) {
-        // Tính toán biên độ âm thanh
+        // Tính toán biên độ âm thanh trung bình
         int sum = 0;
         for (int i = 0; i < readSize; i++) {
             sum += Math.abs(buffer[i]);
         }
         int average = sum / readSize;
 
-        // Log biên độ để debug
+        // Ghi log biên độ để debug
         Log.d(TAG, "Biên độ âm thanh: " + average);
 
-        // Nếu biên độ vượt ngưỡng, bật đèn flash
+        // Nếu biên độ vượt ngưỡng, kích hoạt đèn flash
         if (average > threshold) {
-            flashBeat();
+            flashBeat(); // Kích hoạt đèn flash theo nhịp
         }
     }
 

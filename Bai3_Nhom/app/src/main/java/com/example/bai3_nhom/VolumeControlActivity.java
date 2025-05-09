@@ -64,11 +64,17 @@ public class VolumeControlActivity extends AppCompatActivity implements SensorEv
         sensorManager.unregisterListener(this);
     }
 
+    /**
+     * Xử lý khi có thay đổi từ cảm biến
+     * Phát hiện khi thiết bị nghiêng để tăng/giảm âm lượng
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
+        // Xử lý dữ liệu từ cảm biến gia tốc
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float x = event.values[0]; // Gia tốc trục X (nghiêng trái/phải)
 
+            // Tránh điều chỉnh quá nhanh bằng cách kiểm tra thời gian
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastActionTime < ACTION_DELAY) {
                 return; // Tránh điều chỉnh quá nhanh
@@ -77,13 +83,13 @@ public class VolumeControlActivity extends AppCompatActivity implements SensorEv
             // Nghiêng trái (x dương) để tăng âm lượng
             if (x > INCREASE_TILT_THRESHOLD) {
                 lastActionTime = currentTime;
-                adjustVolume(true);
+                adjustVolume(true); // Tăng âm lượng
                 statusTextView.setText("Đã tăng âm lượng");
             }
             // Nghiêng phải (x âm) để giảm âm lượng
             else if (x < DECREASE_TILT_THRESHOLD) {
                 lastActionTime = currentTime;
-                adjustVolume(false);
+                adjustVolume(false); // Giảm âm lượng
                 statusTextView.setText("Đã giảm âm lượng");
             }
         }

@@ -14,22 +14,25 @@ public class MainActivity extends AppCompatActivity {
     private Button iotControlButton;
     private Button flashBeatButton;
 
+    /**
+     * Khởi tạo activity chính và thiết lập các nút điều hướng
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Khởi tạo các nút
+        // Khởi tạo các nút điều khiển
         lightControlButton = findViewById(R.id.lightControlButton);
         volumeControlButton = findViewById(R.id.volumeControlButton);
         songControlButton = findViewById(R.id.songControlButton);
         iotControlButton = findViewById(R.id.iotControlButton);
         flashBeatButton = findViewById(R.id.flashBeatButton);
 
-        // Thêm sự kiện cho các nút
+        // Thiết lập sự kiện click cho nút điều khiển đèn
         lightControlButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LightControlActivity.class);
-            startActivity(intent);
+            startActivity(intent); // Chuyển đến màn hình điều khiển đèn
         });
 
         volumeControlButton.setOnClickListener(v -> {
